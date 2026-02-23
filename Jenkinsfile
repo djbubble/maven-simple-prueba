@@ -55,7 +55,7 @@ pipeline {
                 configFileProvider([configFile(fileId: 'b3385001-6523-43f3-bc63-8c75e791af1c', variable: 'MAVEN_SETTINGS')]) {
                     sh """
                     mvn deploy:deploy-file -s $MAVEN_SETTINGS \
-                    -Dfile=target/maven-simple-0.0.1-SNAPSHOT.jar \
+                    -Dfile=target/maven-simple-0.2-SNAPSHOT.jar \
                     -DrepositoryId=mi-repo-binarios \
                     -Durl=http://host.docker.internal:8081/repository/mi-repo-binarios/ \
                     -DgroupId=com.djbubble \
