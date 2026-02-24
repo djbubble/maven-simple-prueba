@@ -51,6 +51,19 @@ pipeline {
             }
         }
 
+        stage('Docker Build') {
+            steps {
+                script {
+                    // Construimos la imagen con un nombre descriptivo
+                    // El '.' indica que el Dockerfile está en la raíz
+                    sh "docker build -t mi-aplicacion-jboss:${env.BUILD_ID} ."
+                    
+                    // También le ponemos el tag 'latest' para tener siempre la última versión localizada
+                    sh "docker build -t mi-aplicacion-jboss:latest ."
+                }
+            }
+        }
+
         stage('Deploy to Nexus') {
             steps {
                 // AQUÍ USAMOS TU ID DE LA IMAGEN
