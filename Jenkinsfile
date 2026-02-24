@@ -1,14 +1,16 @@
 pipeline {
-    agent any
+    agent {
+        label 'debian-worker' // Esto obliga a que se ejecute en el nuevo contenedor Debian en luagar de usar las tools
+    }
     
     options {
         timestamps() 
     }
     
-    tools {
+    /*tools {
         // Asegúrate de que en Manage Jenkins -> Tools el nombre sea 'maven'
         maven 'maven' 
-    }
+    } Ya no empleo esta herramiento al usar la tecnología agente/maestro*/ 
 
     stages {
         stage('Checkout project') {
