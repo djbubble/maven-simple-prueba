@@ -4,9 +4,9 @@ FROM quay.io/wildfly/wildfly:latest
 # 2. Definimos quién mantiene la imagen (opcional)
 LABEL maintainer="aaron"
 
-# 3. Copiamos el archivo generado en el build a la carpeta de despliegue de JBoss
-# IMPORTANTE: Asegúrate de que el nombre coincida con el que genera tu Maven
-COPY target/*.?ar /opt/jboss/wildfly/standalone/deployments/
+# 3. Copiamos SOLO el archivo principal y lo renombramos a .war
+# Esto obliga a WildFly a crear una ruta web y limpia la carpeta de archivos extra
+COPY target/maven-simple-0.2-SNAPSHOT.jar /opt/jboss/wildfly/standalone/deployments/maven-simple.war
 
 # 4. JBoss/WildFly corre por defecto en el puerto 8080
 EXPOSE 8080
